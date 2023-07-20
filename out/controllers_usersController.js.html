@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: controllers/usersController.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: controllers/usersController.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * This is the file in which are all the CRUD operations
+ * for users made by an API, while also inserts for 
+ * the logs table to ensure every operations is logged
+ * @module usersController
+ * 
+ * 
+ * @requires connectDB
+ */ 
+
+const connectDB = require('../db/connect')
+
+/**
+ * Retrieves a list of all users from the database if no query params are provided,
+ * otherwise fetches a subset of locations based on the `limit` and `results` query params.
+ * @async
+ * @function getUsers
+ * @param {Object} req - The request object containing the query parameters.
+ * @param {Object} res - The response object to send the results to.
+ * @returns {Promise&lt;void>} - A Promise that resolves when the results are sent to the response object. 
+ */
+const getUsers = async (req,res) => {
+    let conn
+    const results = req.query.results
+    const limit = req.query.limit
+    if (!limit &amp;&amp; !results){
+        try{
+            conn = await connectDB()
+            let rows = await conn.query("select id, user_name, admin_type from admin_accounts")
+            res.status(200).send(rows)
+        }catch(error){
+            res.status(500).json({ msg: error })
+        }finally{
+            if(conn)
+            conn.release()
+        }
+    }
+    else{
+        try{
+            conn = await connectDB()
+            let rows = await conn.query(`select id, user_name, admin_type from admin_accounts limit ${results} offset ${limit}`)
+            res.status(200).send(rows)
+        }catch(error){
+            res.status(500).json({ msg: error })
+        }finally{
+            if(conn)
+            conn.release()
+        }
+    }
+}
+
+/**
+ * Retrieves a single user from the database based on the specified user ID.
+ * @async
+ * @function getUser
+ * @param {Object} req - The request object containing the query parameters.
+ * @param {Object} res - The response object to send the results to.
+ * @returns {Promise&lt;void>} - A Promise that resolves when the results are sent to the response object. 
+ */
+
+const getUser = async (req,res) =>{
+    let conn
+    let id = req.params.id
+    try{
+        conn = await connectDB()
+        let rows = await conn.query("select * from admin_accounts where (id=?)", [ id ])
+        res.status(200).send(rows)
+    }catch(error){
+        res.status(500).json({ msg: error })
+    }finally{
+        if(conn)
+        conn.release()
+    }
+}
+
+/**
+ * Connects to the database and fetches all users that match the `like` query param.
+ * @async
+ * @function searchUsers
+ * @param {Object} req - The request object.
+ * @param {Object} res - The response object.
+ * @returns {Promise&lt;void>} - A Promise that resolves when the results are sent to the response object. 
+ */
+const searchUsers = async (req,res) => {
+    let conn
+    const like = req.query.like
+    try {
+        conn = await connectDB()
+        let rows = await conn.query(`select * from admin_accounts where user_name like '%${like}%'`)
+        res.status(200).send({rows})
+    } catch (error) {
+        res.status(500).json({ msg: error })
+    }finally{
+        if(conn)
+        conn.release()
+    }
+}
+
+/**
+ * Connects to the database and updates the user specified by `id` parameter.
+ * @async
+ * @function updateUser
+ * @param {Object} req - The request object.
+ * @param {Object} res - The response object.
+ * @returns {Promise&lt;void>} - A Promise that resolves when the results are sent to the response object. 
+ */
+const updateUser = async (req,res) => {
+    let conn
+    let data = req.params
+    try{
+        const { 
+            name: userName,
+            admin_type: userAdminType
+        }=req.body
+        conn = await connectDB()
+        await conn.query("update admin_accounts set user_name=? , admin_type=? where id=?", [userName, userAdminType ,data.id])
+        res.status(200).send({'Updated': data.id})
+    }catch(error){
+        res.status(500).json({ msg: error })
+    }finally{
+        if(conn)
+        conn.release()
+    }
+}
+
+/**
+ * Connects to the database and deletes the user specified by `id` parameter.
+ * @async
+ * @function deleteUser
+ * @param {Object} req - The request object.
+ * @param {Object} res - The response object.
+ * @returns {Promise&lt;void>} - A Promise that resolves when the results are sent to the response object. 
+ */
+const deleteUser = async (req,res) => {
+    let conn
+    let data = req.params
+    try{
+        conn = await connectDB()
+        await conn.query("delete from admin_accounts where (id=?)", [ data.id ])
+        res.status(200).send({'Deleted': data.id})
+    }catch(error){
+        res.status(500).json({ msg: error })
+    }finally{
+        if(conn)
+        conn.release()
+    }
+}
+
+
+module.exports = {
+    getUsers,
+    searchUsers,
+    deleteUser,
+    updateUser,
+    getUser
+}</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-apiRoutes.html">apiRoutes</a></li><li><a href="module-app.html">app</a></li><li><a href="module-authRoutes.html">authRoutes</a></li><li><a href="module-buildingsController.html">buildingsController</a></li><li><a href="module-connect.html">connect</a></li><li><a href="module-devicesController.html">devicesController</a></li><li><a href="module-locationsController.html">locationsController</a></li><li><a href="module-logsController.html">logsController</a></li><li><a href="module-mrtgController.html">mrtgController</a></li><li><a href="module-nonAuthRoutes.html">nonAuthRoutes</a></li><li><a href="module-passport.html">passport</a></li><li><a href="module-render.html">render</a></li><li><a href="module-usersController.html">usersController</a></li><li><a href="module-viewRoutes.html">viewRoutes</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Thu Apr 20 2023 21:30:23 GMT+0200 (stredoeurópsky letný čas)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

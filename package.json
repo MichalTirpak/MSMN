@@ -1,0 +1,60 @@
+{
+  "name": "bakalarska_praca",
+  "description": "\"# MSMN-Bc\"",
+  "version": "1.0.0",
+  "main": "app.js",
+  "directories": {
+    "test": "test"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  },
+  "scripts": {
+    "start": "nodemon app.js"
+  },
+  "dependencies": {
+    "axios": "^1.1.2",
+    "base64url": "^3.0.1",
+    "body-parser": "^1.20.1",
+    "connect-flash": "^0.1.1",
+    "constantinople": "^4.0.1",
+    "cookie-parser": "^1.4.6",
+    "dotenv": "^16.0.3",
+    "ejs": "^3.1.8",
+    "express": "^4.18.2",
+    "express-ejs-layouts": "^2.5.1",
+    "express-oauth-jwt": "^2.0.1",
+    "express-session": "^1.17.3",
+    "http": "^0.0.1-security",
+    "JSON": "^1.0.0",
+    "keycloak-admin": "^1.14.22",
+    "keycloak-connect": "^19.0.3",
+    "keycloak-js": "^19.0.3",
+    "lodash": "^4.17.21",
+    "mariadb": "^3.0.1",
+    "morgan": "^1.10.0",
+    "node-fetch": "^3.2.10",
+    "passport": "^0.6.0",
+    "passport-curity": "^1.1.1",
+    "passport-keycloak-bearer": "^2.3.0",
+    "passport-keycloak-oauth2-oidc": "^1.0.5",
+    "passport-openid": "^0.4.0",
+    "passport-openid-oauth20": "^1.2.6",
+    "passport-openidconnect": "^0.1.1",
+    "request": "^2.88.2",
+    "session-file-store": "^1.5.0",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^4.6.3",
+    "uuid": "^9.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MichalTirpak/MSMN-Bc.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MichalTirpak/MSMN-Bc/issues"
+  },
+  "homepage": "https://github.com/MichalTirpak/MSMN-Bc#readme"
+}

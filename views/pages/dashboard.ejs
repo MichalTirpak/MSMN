@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('../partials/head.ejs') %>
+  <body class="g-sidenav-show bg-gray-100">
+      <div class="min-height-300 bg-primary position-absolute w-100"></div>
+      <%- include('../partials/sidebar.ejs') %>
+      <main class="main-content position-relative border-radius-lg ps">
+        <%- include('../partials/top-search.ejs') %>
+        <div class="container position-sticky z-index-sticky top-0">
+          <div class="row">
+            <div class="col-12">
+              <body class="g-sidenav-show bg-gray-100">
+                <div class="min-height-300 position-absolute w-100"></div>
+                  <div class="container-fluid py-4">
+                    <div class="row">
+                      <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+                        <a class="nav" href="/buildings">
+                        <div class="card">
+                          <div class="card-body p-4">
+                            <div class="row">
+                              <div class="col-8">
+                                <div class="numbers">
+                                  <h5 class="font-weight-bolder">
+                                    Budovy
+                                  </h5>
+                                  <p class="mb-0">
+                                      <span class="text-success text-sm font-weight-bolder"><%=buildings%></span>
+                                      zaevidovanych budov
+                                  </p>
+                                </div>
+                              </div>
+                              <div class="col-4 text-end">
+                                <div class="icon icon-shape bg-gradient-success shadow-success text-center rounded-circle">
+                                  <i class="ni ni-building text-lg opacity-10" aria-hidden="true"></i>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        </a>
+                      </div>
+                      <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+                        <a class="nav" href="/locations">
+                        <div class="card">
+                          <div class="card-body p-4">
+                            <div class="row">
+                              <div class="col-8">
+                                <div class="numbers">
+                                    <h5 class="font-weight-bolder">
+                                      Lokality
+                                    </h5>
+                                  <p class="mb-0">
+                                    <span class="text-success text-sm font-weight-bolder"><%=locations%></span>
+                                    zaevidovanych lokalit 
+                                  </p>
+                                </div>
+                              </div>
+                              <div class="col-4 text-end">
+                                <div class="icon icon-shape bg-gradient-primary shadow-primary text-center rounded-circle">
+                                  <i class="ni ni-pin-3 text-lg opacity-10" aria-hidden="true"></i>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </a>
+                      </div>
+                      <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+                        <a class="nav" href="/devices">
+                        <div class="card">
+                          <div class="card-body p-4">
+                            <div class="row">
+                              <div class="col-8">
+                                <div class="numbers">
+                                  <h5 class="font-weight-bolder">
+                                    Zariadenia
+                                  </h5>
+                                  <p class="mb-0">
+                                    <span class="text-success text-sm font-weight-bolder"><%=devices%></span>
+                                  zaevidovanych zariadeni
+                                  </p>
+                                </div>
+                              </div>
+                              <div class="col-4 text-end">
+                                <div class="icon icon-shape bg-gradient-danger shadow-danger text-center rounded-circle">
+                                  <i class="ni ni-laptop text-lg opacity-10" aria-hidden="true"></i>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </a>
+                      </div>
+                      <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+                        <a class="nav" href="/users">
+                        <div class="card">
+                          <div class="card-body p-4">
+                            <div class="row">
+                              <div class="col-8">
+                                <div class="numbers">
+                                  <h5 class="font-weight-bolder">
+                                    Uzivatelia
+                                  </h5>
+                                  <p class="mb-0">
+                                    <span class="text-success text-sm font-weight-bolder"><%=users%></span>
+                                    zaevidovanych uzivatelov
+                                  </p>
+                                </div>
+                              </div>
+                              <div class="col-4 text-end">
+                                <div class="icon icon-shape bg-gradient-warning shadow-warning text-center rounded-circle">
+                                  <i class="ni ni-single-02 text-lg opacity-10" aria-hidden="true"></i>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        </a>
+                      </div>
+                    </div>
+                    </div>
+                  </div>
+                  <%- include('../partials/footer.ejs') %>
+                </div>
+              </main>
+           <%- include('../js/core-js.ejs') %>
+          </body>
+        </html>

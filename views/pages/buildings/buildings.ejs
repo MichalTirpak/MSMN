@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('../../partials/head.ejs') %>
+  </head>
+  <body class="g-sidenav-show bg-gray-100">
+      <div class="min-height-300 bg-primary position-absolute w-100"></div>
+      <%- include('../../partials/sidebar.ejs') %>
+        <main class="main-content position-relative border-radius-lg ">
+          <%- include('../../partials/top-search.ejs') %>
+          <div class="container position-sticky z-index-sticky top-0">
+            <div class="row">
+                <div class="col-6 d-flex align-items-center">
+                    <h2 class="text-white">
+                        Zoznam budov
+                    </h2>
+                </div>
+                <div class="col-6 text-end mt-3">
+                    <a class="btn btn-link text-white" href="/buildings/add">
+                        <i class="fas fa-plus text-white" aria-hidden="true"></i>  Add New Building
+                    </a>    
+                </div>
+            </div>
+            <form class="d-flex d-flex align-items-center mt-5 mb-5" method="get">
+                <input id="search" type="search" class="form-control me-2" placeholder="Search" aria-label="Search" onkeyup="sendData(this) ; saveValue(this)"> 
+            </form>
+            <table class="table table-bordered table-condensed table-hover border-table mt-7" id="table_body">
+            </table>
+            <div class="d-flex justify-content-center mt-5" id="pagination-wrapper">
+                
+          </div>
+            <%- include('../../partials/footer.ejs') %>
+          </div>
+         </main>
+      </div>
+    <%- include('../../js/core-js.ejs') %>
+    <script src="../../../assets/js/buildings.js"></script>
+   </body>
+</html>

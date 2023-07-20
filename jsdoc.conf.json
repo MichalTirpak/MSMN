@@ -1,0 +1,26 @@
+{
+    "source": {
+      "include": [
+        "app.js",
+        "services/render.js",
+        "routes/apiRoutes.js", 
+        "routes/authRoutes.js",
+        "routes/nonAuthRoutes.js",
+        "routes/viewRoutes.js",
+        "db/connect.js",
+        "controllers/buildingsController.js",
+        "controllers/devicesController.js",
+        "controllers/locationsController.js",
+        "controllers/logsController.js",
+        "controllers/mrtgController.js",
+        "controllers/usersController.js",
+        "config/passport.js"
+        ],
+      "exclude": [
+        "./node_modules"
+        ]
+    },
+    "opts": {
+      "recurse": true
+    }
+  }

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('../partials/head.ejs') %>
+    <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl " id="navbarBlur" data-scroll="false">
+        <div class="container-fluid py-1 px-3">
+        <div class="mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
+        </div>
+            <ul class="navbar-nav justify-content-end">
+            <li class="nav-item px-3 d-flex align-items-center">
+                <a href="/admin" class="nav-link text-white p-0">
+                    <span>Administration</span>
+                </a>
+            </li>
+            </ul>
+        </div>
+        </div>
+    </nav>
+    <body class="bg-primary">
+        <main class="main-content position-relative border-radius-lg ">
+            <div class="container-fluid py-8 col-xl-8 col-lg-10 col-md-12 mx-auto">
+                <header class="page-header d-flex flex-column justify-content-center min-vh-45">
+                    <span>
+                        <img class="rounded d-block" src="https://mrtg.uvt.tuke.sk/logo.png" alt="logo">
+                    </span>
+                    <h1 class="page-header mt-5 mb-8 bs-gray-800 text-white">Mrtg UVT TUKE</h1>
+                </header>
+                <div class="row bg-gray-100 rounded">
+                    <section class="col-xl-10 col-lg-12 col-md-12 mx-auto d-flex flex-column bd-highlight mb-3">
+                        <div id="buildings-locations" class="content mt-auto p-5 bd-highlight">
+                            <header class="mb-5">
+                                <h2 class="text-dark">
+                                    Lokality
+                                </h2>
+                            </header>
+                            <form class="d-flex mb-5">
+                              <input id="search" type="search" class="form-control me-2" placeholder="Search" aria-label="Search" onkeyup="sendData(this)"> 
+                            </form>
+                            <ul id="searchDevices">
+
+                            </ul>
+                        </div>
+                    </section>
+                </div>
+            </div>
+            <%- include('../partials/footer.ejs') %>
+        </main>
+        <%- include('../js/core-js.ejs') %>
+        <script src="../../assets/js/index.js"></script>
+    </body>
+</html>

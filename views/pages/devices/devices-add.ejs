@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <%- include('../../partials/head.ejs') %>
+  </head>
+  <body class="g-sidenav-show bg-gray-100">
+      <div class="min-height-300 bg-primary position-absolute w-100"></div>
+      <%- include('../../partials/sidebar.ejs') %>
+        <main class="main-content position-relative border-radius-lg ">
+          <%- include('../../partials/top-search.ejs') %>
+          <div class="container position-sticky z-index-sticky top-0">
+            <header class="mb-5 mt-9">
+                <h2 class="text-white">
+                  Add Device
+                </h2>
+            </header>
+            <form action="/api/v1/devices" id="add_device" method="POST">
+              <div class="form-group">
+                <label for="example-text-input" class="form-control-label">Nazov Zariadenia</label>
+                <input type="text" name="swname" class="form-control me-2" value="">
+                <label for="example-text-input" class="form-control-label">IP Zariadenia</label>
+                <input type="text" name="swip" class="form-control me-2" value="">
+                <label for="example-text-input" class="form-control-label">Community</label>
+                <input type="text" name="snmpcomunity" class="form-control me-2" value="">
+                <label for="example-text-input" class="form-control-label">Budova</label>
+                <select id="select-building" class="form-select" name="building">
+                    <optgroup id="select-buildings" label="Select Building">
+                        <option value="0">Vyber Budovy</option>
+                    </optgroup>
+                </select>
+                <div id="second-select" style="display:none">
+                    <label for="example-text-input" class="form-control-label">Lokalita</label>
+                    <select id="select-location" class="form-select" name="location">
+                        <optgroup id="select-locations" label="Select Location">
+                            
+                        </optgroup>
+                    </select>
+                </div>
+                <div class="d-flex justify-content-center"> 
+                  <button class="btn btn-dark d-flex mt-5 mb-5" type="submit"><i class="ni ni-send me-2"></i>Send</button>
+                </div>
+              </div>
+            </form>
+            <%- include('../../partials/footer.ejs') %>
+          </div>
+         </main>
+      </div>
+    <%- include('../../js/core-js.ejs') %>
+    <script src="../../../assets/js/devices.js"></script>
+   </body>
+</html> 

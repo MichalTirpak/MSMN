@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <%- include('../../partials/head.ejs') %>
+  </head>
+  <body class="g-sidenav-show bg-gray-100">
+      <div class="min-height-300 bg-primary position-absolute w-100"></div>
+      <%- include('../../partials/sidebar.ejs') %>
+        <main class="main-content position-relative border-radius-lg ">
+          <%- include('../../partials/top-search.ejs') %>
+          <div class="container position-sticky z-index-sticky top-0">
+            <header class="mb-5 mt-9">
+                <h2 class="text-white">
+                  Add Location
+                </h2>
+            </header>
+            <form action="/api/v1/locations" id="add_location" method="POST">
+              <div class="form-group">
+                <label for="example-text-input" class="form-control-label">Nazov Lokality</label>
+                <input type="text" name="name" class="form-control me-2" value="">
+                <label for="example-text-input" class="form-control-label">Budova</label>
+                <select class="form-select" name="building">
+                    <optgroup label="Select Building">
+                        <option>Vyber Budovy</option>
+                        <%
+                        buildings.forEach(function(building){ %>
+                        <option value="<%= building.id %>"><%= building.nazov %></option>
+                        <% }) %>
+                    </optgroup>
+                </select>
+                <div class="d-flex justify-content-center"> 
+                  <button class="btn btn-dark d-flex mt-5 mb-5" type="submit"><i class="ni ni-send me-2"></i>Send</button>
+                </div>
+              </div>
+            </form>
+            <%- include('../../partials/footer.ejs') %>
+          </div>
+         </main>
+      </div>
+    <%- include('../../js/core-js.ejs') %>
+    <script src="../../../assets/js/locations.js"></script>
+   </body>
+</html> 

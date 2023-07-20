@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: controllers/logsController.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: controllers/logsController.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * This is the file in which we get logs based on our needs,
+ * or if we simply search for a log from certain user, about
+ * certain event
+ * @module logsController
+ * 
+ * @requires connectDB
+ */ 
+
+const connectDB = require('../db/connect')
+
+/**
+ * Retrieves logs from the database if no query params are provided,
+ * otherwise fetches a subset of logs based on the `limit` and `results` query params.
+ * @async
+ * @function getLogs
+ * @param {Object} req - Express request object.
+ * @param {Object} res - Express response object.
+ * @returns {Promise&lt;void>} - A Promise that resolves when the query is completed.
+ */
+const getLogs = async (req,res) => {
+    let conn
+    const results = req.query.results
+    const limit = req.query.limit
+    if (!limit &amp;&amp; !results){
+        try{
+            conn = await connectDB()
+            let rows = await conn.query("select * from logs order by id desc;")
+            res.status(200).send(rows)
+        }catch(error){
+            res.status(500).json({ msg: error })
+        }finally{
+            if(conn)
+            conn.release()
+        }
+    }
+    else{
+        try{
+            conn = await connectDB()
+            let rows = await conn.query(`select * from logs order by id desc limit ${results} offset ${limit}`)
+            res.status(200).send(rows)
+        }catch(error){
+            res.status(500).json({ msg: error })
+        }finally{
+            if(conn)
+            conn.release()
+        }
+    }
+}
+
+/**
+ * Searches logs from the database based on the specified search criteria.
+ * @async
+ * @function searchLogs
+ * @param {Object} req - Express request object.
+ * @param {Object} res - Express response object.
+ * @returns {Promise&lt;void>} - A Promise that resolves when the query is completed.
+ */
+const searchLogs = async (req,res) => {
+    let conn
+    const like = req.query.like
+    const searchBy = req.query.searchBy
+    if(searchBy == 'user'){
+        try {
+            conn = await connectDB()
+            let rows = await conn.query(`select * from logs where user like '%${like}%' order by id desc`)
+            res.status(200).send({rows})
+        } catch (error) {
+            res.status(500).json({ msg: error })
+        }finally{
+            if(conn)
+            conn.release()
+        }  
+    } 
+    else if(searchBy == 'udalost'){
+        try {
+            conn = await connectDB()
+            let rows = await conn.query(`select * from logs where udalost like '%${like}%' order by id desc`)
+            res.status(200).send({rows})
+        } catch (error) {
+            res.status(500).json({ msg: error })
+        }finally{
+            if(conn)
+            conn.release()
+        }
+    }else{
+        try {
+            conn = await connectDB()
+            let rows = await conn.query(`select * from logs where user like '%${like}%' order by id desc`)
+            res.status(200).send({rows})
+        } catch (error) {
+            res.status(500).json({ msg: error })
+        }finally{
+            if(conn)
+            conn.release()
+        }   
+    }
+}
+
+module.exports = {
+    getLogs,
+    searchLogs
+}</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-apiRoutes.html">apiRoutes</a></li><li><a href="module-app.html">app</a></li><li><a href="module-authRoutes.html">authRoutes</a></li><li><a href="module-buildingsController.html">buildingsController</a></li><li><a href="module-connect.html">connect</a></li><li><a href="module-devicesController.html">devicesController</a></li><li><a href="module-locationsController.html">locationsController</a></li><li><a href="module-logsController.html">logsController</a></li><li><a href="module-mrtgController.html">mrtgController</a></li><li><a href="module-nonAuthRoutes.html">nonAuthRoutes</a></li><li><a href="module-passport.html">passport</a></li><li><a href="module-render.html">render</a></li><li><a href="module-usersController.html">usersController</a></li><li><a href="module-viewRoutes.html">viewRoutes</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Thu Apr 20 2023 21:30:23 GMT+0200 (stredoeurópsky letný čas)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

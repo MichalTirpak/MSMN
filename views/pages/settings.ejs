@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('../partials/head.ejs') %>
+  </head>
+  <body class="g-sidenav-show bg-gray-100">
+      <div class="min-height-300 bg-primary position-absolute w-100"></div>
+      <%- include('../partials/sidebar.ejs') %>
+        <main class="main-content position-relative border-radius-lg ">
+          <%- include('../partials/top-search.ejs') %>
+          <div class="container position-sticky z-index-sticky top-0">
+            <div class="row">
+                <div class="col-6 d-flex align-items-center">
+                    <h2 class="text-white mt-8">
+                        Settings
+                    </h2>
+                </div>
+            </div>
+            <div class="mt-6">
+            <form class="" id="update_mrtg" method="POST">
+                <div class="form-group ">
+                  <label for="example-text-input" class="form-control-label">MRTG Server</label>
+                  <input type="hidden" name="id" value="<%= id %>">
+                  <input type="text" name="url" class="form-control me-2" value="<%=url%>">
+                  <div class="d-flex justify-content-center"> 
+                    <button class="btn btn-dark d-flex mt-5 mb-5" type="submit">
+                        <i class="ni ni-send me-2"></i>Send
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+                <%- include('../partials/footer.ejs') %>
+            </div>
+           </main>
+        </div>
+      <%- include('../js/core-js.ejs') %>
+      <script src="../../assets/js/mrtg.js"></script>
+     </body>
+  </html>
